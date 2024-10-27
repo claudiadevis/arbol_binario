@@ -5,43 +5,39 @@ def arbol_binario(arbol):
 
     """
     mayor = arbol[0]
-    for nodonivel_1 in arbol:
-        if type(nodonivel_1) == int:
-            if nodonivel_1 >= mayor:
-                mayor = nodonivel_1
-        else:
-            for nodonivel_2 in nodonivel_1:
-                if type(nodonivel_2) == int:
-                    if nodonivel_2 >= mayor:
-                        mayor = nodonivel_2
-                else:
-                    for nodonivel_3 in nodonivel_2:
-                        if type(nodonivel_3) == int:
-                            if nodonivel_3 >= mayor:
-                                mayor = nodonivel_3
-                        else:
-                            for nodonivel_4 in nodonivel_3:
-                                if type(nodonivel_4) == int:
-                                    if nodonivel_4 >= mayor:
-                                        mayor = nodonivel_4
 
-
+    for nodo in arbol:
+        if type(nodo) == int:
+            if nodo >= mayor:
+                mayor = nodo
+        elif type(nodo) == list and nodo != []:
+            mayor_nodo = arbol_binario(nodo)
+            if mayor_nodo >= mayor:
+                mayor = mayor_nodo
+            
+    
     return mayor
 
 
-arbol = [1,
-                 [7,
-                  [2,
-                   [],
-                   []], 
-                  [6,
-                   [5,[],[]],
-                   [11,[],[]]
-                   ]],
-                  [9,[],
-                    [9,
-                     [5,[],[]],
-                     []]
-                  ]]
+arbol =  [1,
+  [7,
+    [2,
+      [],
+      []],
+    [6, 
+      [5,
+        [],
+        []],
+      [11,
+        [],
+        []]]],
+    [9,
+      [],
+      [9, 
+        [5,
+          [],
+          []],
+        []]]]
+
 
 print(arbol_binario(arbol))
